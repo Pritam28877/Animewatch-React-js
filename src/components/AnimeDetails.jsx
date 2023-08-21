@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const AnimeDetails = () => {
-  const { name } = useParams();
-  console.log(name);
+  const { id } = useParams();
+  console.log(id);
 
   //** set the anime state  corrent one
   const [anime, setAnime] = useState({});
@@ -12,13 +12,13 @@ const AnimeDetails = () => {
 
   console.log(anime);
 
-  const getAnime = async () => {
-    const response = await fetch(`https://api.jikan.moe/v4/anime/${anime}`);
+  const getAnime = async (id) => {
+    const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
     const data = await response.json();
-    setAnime(anime);
+    setAnime(data);
   };
   useEffect(() => {
-    getAnime(name);
+    getAnime(id);
   }, []);
   return <div>AnimeDetails</div>;
 };

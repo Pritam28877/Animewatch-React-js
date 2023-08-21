@@ -9,7 +9,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Popular />} />
-        <Route path="/anime/:name" element={<AnimeDetails />} />
+        <Route path="/anime/:id" element={<AnimeDetails />} />
       </Routes>
     </BrowserRouter>
   );
