@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 
 const AnimeDetails = () => {
-  return (
-    <div>AnimeDetails</div>
-  )
-}
+  const { name } = useParams();
+  console.log(name);
 
-export default AnimeDetails
+  //** set the anime state  corrent one
+  const [anime, setAnime] = useState({});
+  const [characters, setCharacters] = useState([]);
+  const [showMore, setShowMore] = useState(false);
+  return <div>AnimeDetails</div>;
+};
+
+export default AnimeDetails;
