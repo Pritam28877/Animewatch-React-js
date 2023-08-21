@@ -2,40 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/apiContext";
 import styled from "styled-components";
-import Shimmer from "./Shimmer";
 
-const Popular = () => {
-  const { popularAnime, isSearch } = useGlobalContext();
-  // console.log(popularAnime);
+const Shimmer = () => {
+  const fakedata = Array(25).fill("");
   const conditionalRender = () => {
-    if (!isSearch) {
-      return popularAnime.map((anime) => {
-        return (
-          <Link to={`/anime/${anime.title}`} key={anime.title}>
-            <img src={anime.images.jpg.large_image_url} alt="" />
-          </Link>
-        );
-      });
-    }
+    return fakedata.map((data) => {
+      return <img src={data} alt="" />;
+    });
   };
   return (
     <>
-      {popularAnime.length === 0 ? (
-        <Shimmer />
-      ) : (
-        <PropularStyle>
-          <div className="popular-anime">{conditionalRender()}</div>
-        </PropularStyle>
-      )}
+      <FillCards>
+        <div className="fill-card">{conditionalRender()}</div>;
+      </FillCards>
     </>
   );
 };
-
-const PropularStyle = styled.div`
+const FillCards = styled.div`
   display: flex;
 
-  .popular-anime {
-    background-color: #0f0f0f;
+  .fill-card {
+    background-color: #5f5959;
     margin-top: 2rem;
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -60,4 +47,4 @@ const PropularStyle = styled.div`
     }
   }
 `;
-export default Popular;
+export default Shimmer;

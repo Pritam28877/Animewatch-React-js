@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
 body{
     color: #6c7983;
     font-size: 1.2rem;
-    // background-color : red ;
+    background-color :  #0f0f0f ;
     &::-webkit-scrollbar{
         width: 7px;
     }
