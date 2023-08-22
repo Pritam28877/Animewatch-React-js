@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AnimeDetails = () => {
   const { id } = useParams();
@@ -10,7 +11,7 @@ const AnimeDetails = () => {
   const [characters, setCharacters] = useState([]);
   const [showMore, setShowMore] = useState(false);
 
-  //destructure anime
+  //*destructure anime
   const {
     title,
     synopsis,
@@ -28,13 +29,27 @@ const AnimeDetails = () => {
     source,
   } = anime;
 
+  //*get anime based on id
   const getAnime = async (id) => {
     const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
     const data = await response.json();
     setAnime(data.data);
   };
+
+  //*get characters
+
+  const getCharacters = async (id) => {
+    const response = await fetch(
+      `https://api.jikan.moe/v4/anime/${id}/characters`
+    );
+    const data = await response.json();
+    setCharacters(data.data);
+    console.log(data.data);
+  };
+
   useEffect(() => {
     getAnime(id);
+    getCharacters(id);
   }, []);
   console.log(anime);
   return (
@@ -113,6 +128,22 @@ const AnimeDetails = () => {
         ) : (
           <h3>Trailer not available</h3>
         )}
+      </div>
+      <h3 className="title">Characters</h3>
+      <div className="characters">
+        {characters?.map((character, index) => {
+          const { role } = character;
+          const { images, name, mal_id } = character.character;
+          return (
+            <Link to={`/character/${mal_id}`} key={index}>
+              <div className="character">
+                <img src={images?.jpg.image_url} alt="" />
+                <h4>{name}</h4>
+                <p>{role}</p>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );
