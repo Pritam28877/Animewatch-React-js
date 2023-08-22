@@ -88,6 +88,9 @@ const AnimeDetails = () => {
             </p>
           </div>
         </div>
+        <p className="description">
+          {showMore ? synopsis : synopsis?.substring(0, 450) + "..."}
+        </p>
       </div>
     </div>
   );
