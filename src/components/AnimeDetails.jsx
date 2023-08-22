@@ -10,17 +10,38 @@ const AnimeDetails = () => {
   const [characters, setCharacters] = useState([]);
   const [showMore, setShowMore] = useState(false);
 
-  console.log(anime);
+  //destructure anime
+  const {
+    title,
+    synopsis,
+    trailer,
+    duration,
+    aired,
+    season,
+    images,
+    rank,
+    score,
+    scored_by,
+    popularity,
+    status,
+    rating,
+    source,
+  } = anime;
 
   const getAnime = async (id) => {
     const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
     const data = await response.json();
-    setAnime(data);
+    setAnime(data.data);
   };
   useEffect(() => {
     getAnime(id);
   }, []);
-  return <div>AnimeDetails</div>;
+  console.log(anime);
+  return (
+    <div>
+      <h1>{}</h1>
+    </div>
+  );
 };
 
 export default AnimeDetails;
