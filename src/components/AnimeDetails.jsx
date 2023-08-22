@@ -90,6 +90,13 @@ const AnimeDetails = () => {
         </div>
         <p className="description">
           {showMore ? synopsis : synopsis?.substring(0, 450) + "..."}
+          <button
+            onClick={() => {
+              setShowMore(!showMore);
+            }}
+          >
+            {showMore ? "Show less" : "Read More"}
+          </button>
         </p>
       </div>
     </div>
