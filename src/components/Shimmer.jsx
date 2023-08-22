@@ -26,7 +26,7 @@ const FillCards = styled.div`
 `;
 
 const Card = styled.div`
-  background-color: #fff;
+  background-color: #5f5959;
   border-radius: 7px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

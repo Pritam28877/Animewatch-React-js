@@ -39,7 +39,56 @@ const AnimeDetails = () => {
   console.log(anime);
   return (
     <div>
-      <h1>{}</h1>
+      <h1>{title}</h1>
+      <div className="details">
+        <div className="detail">
+          <div className="image">
+            <img src={images?.jpg.large_image_url} alt="" />
+          </div>
+          <div className="anime-details">
+            <p>
+              <span>Aired:</span>
+              <span>{aired?.string}</span>
+            </p>
+            <p>
+              <span>Rating:</span>
+              <span>{rating}</span>
+            </p>
+            <p>
+              <span>Rank:</span>
+              <span>{rank}</span>
+            </p>
+            <p>
+              <span>Score:</span>
+              <span>{score}</span>
+            </p>
+            <p>
+              <span>Scored By:</span>
+              <span>{scored_by}</span>
+            </p>
+            <p>
+              <span>Popularity:</span>
+              <span>{popularity}</span>
+            </p>
+            <p>
+              <span>Status:</span>
+              <span>{status}</span>
+            </p>
+            <p>
+              <span>Source:</span>
+              <span>{source}</span>
+            </p>
+            <p>
+              <span>Season:</span>
+              <span>{season}</span>
+            </p>
+            <p>
+              <span>Duration:</span>
+              <span>{duration}</span>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
