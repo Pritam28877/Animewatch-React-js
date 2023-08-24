@@ -93,7 +93,7 @@ function Homepage() {
 }
 
 const HomepageStyled = styled.div`
-  background-color: #ededed;
+  background-color: #0e0d0da6;
   header {
     padding: 2rem 5rem;
     width: 60%;

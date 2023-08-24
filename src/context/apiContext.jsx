@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useReducer,
+  useEffect,
+  useState,
+} from "react";
 
 const GlobalContext = createContext();
 const baseUrl = "https://api.jikan.moe/v4";
@@ -32,6 +38,17 @@ export const GlobalProvider = ({ children }) => {
     loading: false,
   };
 
+  //* *the hooks for the stage chanege
+  const [state, dispatch] = useReducer(reducer, intialState);
+  const [search, setSeach] = useState("");
+
+  const handleChange = () => {
+    setSeach(e.target.value);
+    if (e.target.value === "") {
+      state.isSearch = false;
+    }
+  };
+
   // * the function to get the getPopularAnime data
   const getPopularAnime = async () => {
     dispatch({ type: LOADING });
@@ -45,7 +62,6 @@ export const GlobalProvider = ({ children }) => {
     getPopularAnime();
   }, []);
 
-  const [state, dispatch] = useReducer(reducer, intialState);
   return (
     <GlobalContext.Provider value={{ ...state }}>
       {children}
