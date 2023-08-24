@@ -78,7 +78,13 @@ export const GlobalProvider = ({ children }) => {
     const data = await response.json();
     dispatch({ type: GET_POPULAR_ANIME, payload: data.data });
   };
-
+  //*fetch airing anime data
+  const getAiringAnime = async () => {
+    dispatch({ type: LOADING });
+    const response = await fetch(`${baseUrl}/top/anime?filter=airing`);
+    const data = await response.json();
+    dispatch({ type: GET_AIRING_ANIME, payload: data.data });
+  };
   //* fetch the search anime given by the user
 
   const searchAnime = async (anime) => {
