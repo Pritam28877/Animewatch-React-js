@@ -63,7 +63,12 @@ export const GlobalProvider = ({ children }) => {
   //**?it is for the handle the submit action in the browser  */
   const handleSubmit = (e) => {
     e.preventDefault();
-    searchAnime();
+    if (search) {
+      searchAnime();
+    } else {
+      state.isSearch = false;
+      alert("Please enter a value search term ");
+    }
   };
 
   // * the function to get the getPopularAnime data
@@ -91,7 +96,9 @@ export const GlobalProvider = ({ children }) => {
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ ...state }}>
+    <GlobalContext.Provider
+      value={{ ...state, handleChange, handleSubmit, search, searchAnime }}
+    >
       {children}
     </GlobalContext.Provider>
   );
