@@ -64,14 +64,15 @@ export const GlobalProvider = ({ children }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (search) {
-      searchAnime();
+      searchAnime(search);
+      state.isSearch = true;
     } else {
       state.isSearch = false;
       alert("Please enter a value search term ");
     }
   };
 
-  //*fetch upcoming anime the data 
+  //*fetch upcoming anime the data
   const getUpcomingAnime = async () => {
     dispatch({ type: LOADING });
     const response = await fetch(`${baseUrl}/top/anime?filter=upcoming`);
@@ -120,6 +121,7 @@ export const GlobalProvider = ({ children }) => {
         search,
         searchAnime,
         getAiringAnime,
+        getUpcomingAnime,
       }}
     >
       {children}
