@@ -53,7 +53,7 @@ export const GlobalProvider = ({ children }) => {
   const [search, setSeach] = useState("");
 
   //* for the search bar state chaange
-  const handleChange = () => {
+  const handleChange = (e) => {
     setSeach(e.target.value);
     if (e.target.value === "") {
       state.isSearch = false;

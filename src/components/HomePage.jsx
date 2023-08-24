@@ -6,6 +6,7 @@ import styled from "styled-components";
 // import Upcoming from "./Upcoming";
 // import Airing from "./Airing";
 
+
 function Homepage() {
   const {
     handleSubmit,
