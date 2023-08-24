@@ -8,11 +8,13 @@ import React, {
 
 const GlobalContext = createContext();
 const baseUrl = "https://api.jikan.moe/v4";
+
 //* the action
 const LOADING = "LOADING";
 const SEARCH = "SEARCH";
 const GET_POPULAR_ANIME = "GET_POPULAR_ANIME";
 const GET_AIRING_ANIME = "GET_AIRING_ANIME";
+const GET_PICTURES = "GET_PICTURES";
 
 //** use reducer to add the state change funtion in the intialState obj */
 const reducer = (state, action) => {
@@ -21,6 +23,14 @@ const reducer = (state, action) => {
       return { ...state, loading: true };
     case GET_POPULAR_ANIME:
       return { ...state, popularAnime: action.payload, loading: false };
+    case SEARCH:
+      return { ...state, searchResults: action.payload, loading: false };
+    case GET_UPCOMING_ANIME:
+      return { ...state, upcomingAnime: action.payload, loading: false };
+    case GET_AIRING_ANIME:
+      return { ...state, airingAnime: action.payload, loading: false };
+    case GET_PICTURES:
+      return { ...state, pictures: action.payload, loading: false };
     default:
       return state;
   }
