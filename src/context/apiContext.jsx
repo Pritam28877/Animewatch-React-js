@@ -42,11 +42,18 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, intialState);
   const [search, setSeach] = useState("");
 
+  //* for the search bar state chaange
   const handleChange = () => {
     setSeach(e.target.value);
     if (e.target.value === "") {
       state.isSearch = false;
     }
+  };
+
+  //**?it is for the handle the submit action in the browser  */
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    searchAnime();
   };
 
   // * the function to get the getPopularAnime data
@@ -55,6 +62,17 @@ export const GlobalProvider = ({ children }) => {
     const response = await fetch(`${baseUrl}/top/anime?filter=bypopularity`);
     const data = await response.json();
     dispatch({ type: GET_POPULAR_ANIME, payload: data.data });
+  };
+
+  //* fetch the search anime given by the user
+
+  const searchAnime = async (anime) => {
+    dispatch({ type: LOADING });
+    const response = await fetch(
+      `https://api.jikan.moe/v4/anime?q=${anime}&order_by=popularity&sort=asc&sfw`
+    );
+    const data = await response.json();
+    dispatch({ type: SEARCH, payload: data.data });
   };
 
   //* the hook to call the data at first render of the page
