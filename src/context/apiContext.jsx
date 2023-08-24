@@ -71,6 +71,14 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
+  //*fetch upcoming anime the data 
+  const getUpcomingAnime = async () => {
+    dispatch({ type: LOADING });
+    const response = await fetch(`${baseUrl}/top/anime?filter=upcoming`);
+    const data = await response.json();
+    dispatch({ type: GET_UPCOMING_ANIME, payload: data.data });
+  };
+
   // * the function to get the getPopularAnime data
   const getPopularAnime = async () => {
     dispatch({ type: LOADING });
@@ -78,6 +86,7 @@ export const GlobalProvider = ({ children }) => {
     const data = await response.json();
     dispatch({ type: GET_POPULAR_ANIME, payload: data.data });
   };
+
   //*fetch airing anime data
   const getAiringAnime = async () => {
     dispatch({ type: LOADING });
@@ -85,6 +94,7 @@ export const GlobalProvider = ({ children }) => {
     const data = await response.json();
     dispatch({ type: GET_AIRING_ANIME, payload: data.data });
   };
+
   //* fetch the search anime given by the user
 
   const searchAnime = async (anime) => {
@@ -103,7 +113,14 @@ export const GlobalProvider = ({ children }) => {
 
   return (
     <GlobalContext.Provider
-      value={{ ...state, handleChange, handleSubmit, search, searchAnime }}
+      value={{
+        ...state,
+        handleChange,
+        handleSubmit,
+        search,
+        searchAnime,
+        getAiringAnime,
+      }}
     >
       {children}
     </GlobalContext.Provider>
