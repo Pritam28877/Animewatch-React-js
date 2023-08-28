@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/apiContext";
 import styled from "styled-components";
-
+// the fake card ui 
 const Shimmer = () => {
   const numCards = 25;
 
